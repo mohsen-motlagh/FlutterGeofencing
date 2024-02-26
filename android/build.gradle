@@ -29,15 +29,21 @@ apply plugin: 'kotlin-android'
 
 android {
     namespace 'io.flutter.plugins.geofencing'
-    compileSdkVersion 34
+
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
     defaultConfig {
+        compileSdk 34
         minSdkVersion 16
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+    compileOptions{
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     lintOptions {
         disable 'InvalidPackage'
     }
