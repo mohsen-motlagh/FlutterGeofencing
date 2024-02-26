@@ -161,7 +161,12 @@ class GeofencingPlugin : ActivityAware, FlutterPlugin, MethodCallHandler {
     private fun getGeofencePendingIndent(context: Context, callbackHandle: Long): PendingIntent {
       val intent = Intent(context, GeofencingBroadcastReceiver::class.java)
               .putExtra(CALLBACK_HANDLE_KEY, callbackHandle)
-      return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
+      //return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
+      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+        return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_MUTABLE)
+      } else {
+        return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+      }
     }
 
     @JvmStatic

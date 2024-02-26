@@ -63,6 +63,7 @@ class GeofencingService : MethodCallHandler, JobIntentService() {
         synchronized(sServiceStarted) {
             mContext = context
             if (sBackgroundFlutterEngine == null) {
+                sBackgroundFlutterEngine = FlutterEngine(context)
                 val callbackHandle = context.getSharedPreferences(
                         GeofencingPlugin.SHARED_PREFERENCES_KEY,
                         Context.MODE_PRIVATE)
@@ -78,7 +79,7 @@ class GeofencingService : MethodCallHandler, JobIntentService() {
                     return
                 }
                 Log.i(TAG, "Starting GeofencingService...")
-                sBackgroundFlutterEngine = FlutterEngine(context)
+
 
                 val args = DartCallback(
                     context.getAssets(),
