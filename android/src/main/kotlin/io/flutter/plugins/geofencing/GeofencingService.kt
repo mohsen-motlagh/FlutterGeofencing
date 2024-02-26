@@ -151,7 +151,7 @@ class GeofencingService : MethodCallHandler, JobIntentService() {
         synchronized(sServiceStarted) {
             if (!sServiceStarted.get()) {
                 // Queue up geofencing events while background isolate is starting
-                queue.add(geofenceUpdateList)
+                queue.add(listOf(geofenceUpdateList))
             } else {
                 // Callback method name is intentionally left blank.
                 Handler(mContext.mainLooper).post { mBackgroundChannel.invokeMethod("", geofenceUpdateList) }
