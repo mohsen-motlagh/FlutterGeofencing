@@ -1,1 +1,3 @@
 rootProject.name = 'geofencing'
+include ':app'
+include ':banner'
